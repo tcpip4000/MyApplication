@@ -1,15 +1,8 @@
 package net.ertechnology.testy;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
 public class DisplayMessageActivity extends Activity {
@@ -28,6 +21,17 @@ public class DisplayMessageActivity extends Activity {
             bundle.putString(PlaceHolderFragment.PLACEHOLDERFRAGMENT_EXTRA_MSG, getIntent().getStringExtra(MainActivity.MAINACTIVITY_EXTRA_MESSAGE));
             fragment1.setArguments(bundle);
             getFragmentManager().beginTransaction().add(R.id.display_message_container, fragment1).commit();
+        }
+
+        if (findViewById(R.id.display_message_container2) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+            PlaceHolderFragment2 fragment2 = new PlaceHolderFragment2();
+            Bundle bundle = new Bundle();
+            bundle.putString(PlaceHolderFragment2.PLACEHOLDERFRAGMENT2_EXTRA_MSG, getIntent().getStringExtra(MainActivity.MAINACTIVITY_EXTRA_MESSAGE));
+            fragment2.setArguments(bundle);
+            getFragmentManager().beginTransaction().add(R.id.display_message_container2, fragment2).commit();
         }
 
         /*Intent intent = getIntent();
@@ -63,32 +67,5 @@ public class DisplayMessageActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class PlaceHolderFragment extends Fragment {
 
-        View mContainer;
-        protected static final String PLACEHOLDERFRAGMENT_EXTRA_MSG = "net.ertechnology.testy.PlaceHolderFragment.MESSAGE";
-
-        public PlaceHolderFragment() { }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstance) {
-            mContainer = inflater.inflate(R.layout.activity_display_message, container, false);
-            RelativeLayout relativeLayout = (RelativeLayout) mContainer.findViewById(R.id.display_message_container);
-
-            Bundle bundle = this.getArguments();
-            if (bundle != null) {
-                String message = bundle.getString(PLACEHOLDERFRAGMENT_EXTRA_MSG);
-
-                TextView textView = new TextView(getActivity());
-                textView.setTextSize(40);
-                textView.setText(message);
-                //textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                relativeLayout.addView(textView);
-
-            }
-
-            return mContainer;
-        }
-    }
 }
