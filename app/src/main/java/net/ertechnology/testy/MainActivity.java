@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
-    public static final String EXTRA_MESSAGE = "net.ertechnology.testy.main.MESSAGE";
+    public static final String MAINACTIVITY_EXTRA_MESSAGE = "net.ertechnology.testy.main.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(MAINACTIVITY_EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 
